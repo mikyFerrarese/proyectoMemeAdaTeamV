@@ -393,15 +393,30 @@ window.onload = inicializar
 
 
 document.addEventListener("DOMContentLoaded", function() {
+
   let imageItems = document.querySelectorAll('.gallery-image');
+
   console.log(imageItems);
+
   imageItems.forEach(item => {
-    item.addEventListener('click', evento => {
+  // en cada una de las fotos de la galeria vamos a ejectuar este codigo... que hace?
+  // agregar un event listener a cada imagen.
+  // y ademas cuando se le haga click le saca al elemento clickeado (evento.target) el src de la imagen
+  // y esa url la ponemos de fondo del div del canvas en el medio de la pagina.
+
+    item.addEventListener('click', evento => { 
       // agarro del evento click el target y su propiedad src -la url de la imagen-
+
+      // pongo la URL de la imagen elegida en el input de direccion imagen
       let elemento = $('url-img-input')
       elemento.setAttribute("value",evento.target.src);
+
+      // setear la imagen de fondo del meme
       $('imagen-de-meme').style.backgroundImage = `url('${evento.target.src}')`
+
+      // oculto la galeria
       ocultarGaleria()
+
     })
   })
 });
