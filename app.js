@@ -6,7 +6,8 @@
 // ahorrar repetir escribir lo mismo mil veces
 // reutilizar codigo una funcion
 
-const $ = (id) => document.getElementById(id)
+const $ = (id) => document.getElementById(id);
+const $class = (id) => document.getElementsByClassName(id);
 
 // DESCARGAR MEME
 
@@ -277,6 +278,7 @@ const mostrarPanelTexto = () => {
     $('close-gallery').addEventListener('click', () => {
       ocultarGaleria()
     })
+  
 }
 
 const inicializarTemas = () => {
@@ -385,4 +387,22 @@ const inicializar = () => {
   inicializarGallery()
 }
 
+
+
 window.onload = inicializar
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  let imageItems = document.querySelectorAll('.gallery-image');
+  console.log(imageItems);
+  imageItems.forEach(item => {
+    item.addEventListener('click', evento => {
+      // agarro del evento click el target y su propiedad src -la url de la imagen-
+      let elemento = $('url-img-input')
+      elemento.setAttribute("value",evento.target.src);
+      $('imagen-de-meme').style.backgroundImage = `url('${evento.target.src}')`
+      ocultarGaleria()
+    })
+  })
+});
+
